@@ -1,3 +1,4 @@
+import 'package:eventify_tech/screens/dashboard_screen.dart';
 import 'package:eventify_tech/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,25 +28,34 @@ class _SignupScreenState extends State<SignupScreen> {
       _isLoading = true;
     });
     try {
+      print('Creating user...');
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+      print('User created. Adding to Firestore...');
       await _firestore.collection('users').doc(userCredential.user!.uid).set({
         'name': _nameController.text.trim(),
         'email': _emailController.text.trim(),
         'contact': _contactController.text.trim(),
       });
-      Navigator.pushReplacementNamed(context, '/dashboard');
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Signup failed: $e')),
-      );
-    } finally {
       setState(() {
         _isLoading = false;
       });
-    }
+      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => DashboardScreen()),
+                        );
+      print('User added to Firestore. Navigation to dashboard.');
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      print('Signup failed: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Signup failed: $e')),
+      );
+    } 
   }
 
   @override
