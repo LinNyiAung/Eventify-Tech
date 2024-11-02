@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "257499530818",
+    "project_id": "eventify-tech-d71b5",
+    "storage_bucket": "eventify-tech-d71b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257499530818:android:bba2a6a04422078efa0fdb",
+        "android_client_info": {
+          "package_name": "com.example.eventify_tech"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJo4-K3EYEXx9IwmVwDvTCKKBrvWniooY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
